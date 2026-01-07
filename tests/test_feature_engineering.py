@@ -1,4 +1,4 @@
-from src.feature_engineering import hashed_feature
+from src.feature_engineering import FeatureHasher
 
 def test_hashed_feature_known_value():
 <<<<<<< HEAD

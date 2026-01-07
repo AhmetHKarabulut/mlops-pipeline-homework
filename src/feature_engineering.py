@@ -1,11 +1,5 @@
-import hashlib
+# feature_engineering.py
 
-def hashed_feature(value: str, num_buckets: int = 10) -> int:
-    """Verilen string'i hashleyip bucket index'i döndürür."""
-    hash_object = hashlib.md5(value.encode())
-    hash_int = int(hash_object.hexdigest(), 16)
-    return hash_int % num_buckets
-<<<<<<< HEAD
-=======
-
->>>>>>> 979664cf39526b543a0f9e2c4974a5188be48d3a
+def hash_feature(value: str, num_buckets: int = 10) -> int:
+    """Simple hashing function to map string to a bucket index"""
+    return hash(value) % num_buckets

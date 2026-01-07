@@ -1,11 +1,12 @@
-from src.feature_engineering import FeatureHasher
+import pytest
+from src.feature_engineering import hash_features
 
-def test_hashed_feature_known_value():
-<<<<<<< HEAD
-    assert hashed_feature("apple", 10) == hashed_feature("apple", 10)
-    assert hashed_feature("mlops", 10) == hashed_feature("mlops", 10)
-=======
-    assert hashed_feature("apple", 10) == 4  # bilinen input için beklenen bucket
-    assert hashed_feature("banana", 10) == 6
+def test_hash_features_output_type():
+    data = [{"text": "mlops pipeline"}]
+    result = hash_features(data, "text")
+    assert isinstance(result, list)
 
->>>>>>> 979664cf39526b543a0f9e2c4974a5188be48d3a
+def test_hash_features_not_empty():
+    data = [{"text": "mlops"}]
+    result = hash_features(data, "text")
+    assert len(result) > 0

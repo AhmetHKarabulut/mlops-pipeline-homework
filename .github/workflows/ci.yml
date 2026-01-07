@@ -1,5 +1,29 @@
+name: CI-CD Pipeline
+
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Unit Tests
+        run: |
+          pip install pytest
+          pytest -q
+
+      - name: Run Linting
+        run: |
+          pip install flake8
+          flake8 .
+
+      - name: Build Docker Image
+        run: docker build -t mlops-hw .
+
+      - name: Smoke Test Simulation
+        run: echo "Smoke test will be added after serving API implementation"

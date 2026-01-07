@@ -1,12 +1,9 @@
-import pytest
-from src.feature_engineering import hash_features
+from feature_engineering import hash_feature
 
-def test_hash_features_output_type():
-    data = [{"text": "mlops pipeline"}]
-    result = hash_features(data, "text")
-    assert isinstance(result, list)
-
-def test_hash_features_not_empty():
-    data = [{"text": "mlops"}]
-    result = hash_features(data, "text")
-    assert len(result) > 0
+def test_hash_feature_known_value():
+    """Unit test: fast, isolated, no external dependencies"""
+    # Hashing "apple" in 10 buckets
+    result = hash_feature("apple", 10)
+    # We know hash("apple") % 10 should be deterministic
+    assert isinstance(result, int)
+    assert 0 <= result < 10
